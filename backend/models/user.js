@@ -4,17 +4,17 @@ const mongoose = require('mongoose'),
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     profileImage: {
@@ -42,7 +42,7 @@ userSchema.pre("save", async function(next){
     }
 });
 
-userSchema.method.comparePassword = async function(candidatePassword, next) {
+userSchema.methods.comparePassword = async function(candidatePassword, next) {
     var user = this;
     try {
         //plain text password gets passed into bcrypt and hashed then compared with the users hashed password
