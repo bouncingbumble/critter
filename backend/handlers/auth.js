@@ -1,15 +1,33 @@
 const db = require('../models'),
-    express = require('express'),
     jwt = require('jsonwebtoken');
 
-exports.signin = async function(user){
-    db.User.findOne({username: user.username, email: user.email}, 'password', (err, foundUser) => {
-        console.log(foundUser)
-        foundUser.comparePassword(user.password, errorHandler)
-        .then(data => {
-            console.log(data)
+exports.signin = async function(req, res, next){
+    console.log(req.body)
+    try {
+        let foundUser = await db.User.findOne({email: req.body.email}, 'password');
+            console.log(foundUser)
+        let found = await foundUser.comparePassword(req.body.password, errorHandler);
+        if(found){
+            // let token = jwt.sign({
+            //         id,
+            //         username,
+            //         profileImageUrl
+            //     }, 
+            //     process.env.SECRET_KEY
+            // );
+            res.send({"message": `Welcome ${req.body.email}`})
+        }else {
+            let err = new Error("Wrong password");
+            err.status = 400;
+            next(err)
+        }
+    }catch(err){
+        return next({
+            status: 400,
+            message: 'Incorrect email'
         })
-    })
+    }
+
 }
 
 exports.signup = async function(req, res, next){
@@ -26,15 +44,17 @@ exports.signup = async function(req, res, next){
             }, 
             process.env.SECRET_KEY
         );
-        return res.status(200).json({
-            id,
-            username,
-            profileImageUrl,
-            token
-        });
+
+        res.send({"message": `Thanks for signing up ${username}`})
+        // return res.status(200).json({
+        //     id,
+        //     username,
+        //     profileImageUrl,
+        //     token
+        // });
     }catch(err){
         if(err.code === 11000){
-            err.message = "Sorry, that username and/or email is take";
+            err.message = "Sorry, that username and/or email is taken";
         }
         return next({
             status: 400,

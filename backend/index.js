@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config(); //process.env_________
 var express = require('express'),
     app = express(),
     port = process.env.PORT || 6969,
@@ -8,7 +8,7 @@ var express = require('express'),
     errorHandler = require('./handlers/error');
 
 app.use(cors())
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/public'));
 
