@@ -4,16 +4,17 @@ var express = require('express'),
     port = process.env.PORT || 6969,
     cors = require("cors"),
     bodyParser = require('body-parser'),
-    authRoutes = require('./routes/auth')
+    authRoutes = require('./routes/auth'),
+    messageRoutes = require('./routes/message'),
     errorHandler = require('./handlers/error');
 
 app.use(cors())
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/public'));
 
 app.use('/api/auth', authRoutes);
-
+app.use('/api/user/:id/message', messageRoutes)
 app.get('/', (req, res) => {
     res.sendFile('index.html');
 })

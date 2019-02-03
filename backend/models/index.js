@@ -8,3 +8,4 @@ mongoose.connect('mongodb://admin:adminpasswordforcritter1@ds119755.mlab.com:197
 mongoose.Promise = Promise;
 
 module.exports.User = require('./user');
+module.exports.Message = require('./message');

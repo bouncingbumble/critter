@@ -4,18 +4,21 @@ const db = require('../models'),
 exports.signin = async function(req, res, next){
     console.log(req.body)
     try {
-        let foundUser = await db.User.findOne({email: req.body.email}, 'password');
+        let foundUser = await db.User.findOne({email: req.body.email});
             console.log(foundUser)
         let found = await foundUser.comparePassword(req.body.password, errorHandler);
         if(found){
-            // let token = jwt.sign({
-            //         id,
-            //         username,
-            //         profileImageUrl
-            //     }, 
-            //     process.env.SECRET_KEY
-            // );
-            res.send({"message": `Welcome ${req.body.email}`})
+            let token = jwt.sign({
+                    id: foundUser._id,
+                    username: foundUser.username,
+                    profileImageUrl: foundUser.profileImageUrl
+                }, 
+                process.env.SECRET_KEY
+            );
+            res.send({
+                "message": `Welcome ${foundUser.email}`,
+                "JWT" : token
+            })
         }else {
             let err = new Error("Wrong password");
             err.status = 400;
@@ -24,7 +27,7 @@ exports.signin = async function(req, res, next){
     }catch(err){
         return next({
             status: 400,
-            message: 'Incorrect email'
+            message: err.message
         })
     }
 
@@ -45,7 +48,10 @@ exports.signup = async function(req, res, next){
             process.env.SECRET_KEY
         );
 
-        res.send({"message": `Thanks for signing up ${username}`})
+        res.send({
+            "message": `Thanks for signing up ${username}`,
+            "JWT" : token
+        });
         // return res.status(200).json({
         //     id,
         //     username,

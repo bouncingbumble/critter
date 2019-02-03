@@ -19,7 +19,13 @@ const userSchema = new mongoose.Schema({
     },
     profileImage: {
         type: String
-    }
+    },
+    messages: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Message"
+        }
+    ]
 })
 
 //this is a pre save hook that will execute before any user info is sent to the DB
