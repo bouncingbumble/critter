@@ -42,6 +42,7 @@ exports.getMessage = async function(req, res, next){
             await db.Message.find({user: req.params.id});
 
         res.status(200).json({messages: messages});
+        
     }catch(err){
         return next({
             status: 400,

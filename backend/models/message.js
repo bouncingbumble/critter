@@ -1,18 +1,23 @@
 const mongoose = require('mongoose');
 const User = require('./user');
 
-const messageSchema = new mongoose.Schema({
+const messageSchema = new mongoose.Schema(
     
-    message: {
-        type: String,
-        required: true,
-        maxlength: 40
+    {
+        message: {
+            type: String,
+            required: true,
+            maxlength: 40
+        },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
     },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+    {
+        timestamps: true
     }
-});
+);
 
 messageSchema.pre('remove', async function(next){
     var message = this;
