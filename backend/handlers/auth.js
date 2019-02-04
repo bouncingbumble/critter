@@ -1,5 +1,6 @@
 const db = require('../models'),
-    jwt = require('jsonwebtoken');
+    jwt = require('jsonwebtoken'),
+    errorHandler = require('./error')
 
 exports.signin = async function(req, res, next){
     console.log(req.body)
@@ -7,11 +8,11 @@ exports.signin = async function(req, res, next){
         let foundUser = await db.User.findOne({email: req.body.email});
             console.log(foundUser)
         let found = await foundUser.comparePassword(req.body.password, errorHandler);
+   
         if(found){
             let token = jwt.sign({
                     id: foundUser._id,
-                    username: foundUser.username,
-                    profileImageUrl: foundUser.profileImageUrl
+                    username: foundUser.username
                 }, 
                 process.env.SECRET_KEY
             );

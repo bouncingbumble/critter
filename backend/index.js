@@ -6,17 +6,17 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     authRoutes = require('./routes/auth'),
     messageRoutes = require('./routes/message'),
+    { authenticate, authorize } = require('./middleware/auth'),
     errorHandler = require('./handlers/error');
 
 app.use(cors())
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/public'));
 
 app.use('/api/auth', authRoutes);
-app.use('/api/user/:id/message', messageRoutes)
+app.use('/api/user/:id/message', authenticate, authorize, messageRoutes)
 app.get('/', (req, res) => {
-    res.sendFile('index.html');
+    res.sendFile('/Users/jordan/Documents/Dev/critter/backend/views/index.html');
 })
 
 
