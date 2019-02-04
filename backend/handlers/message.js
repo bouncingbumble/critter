@@ -52,9 +52,14 @@ exports.getMessage = async function(req, res, next){
 
 exports.deleteMessage = async function(req, res, next) {
     try {
-        let foundMessage = await db.Message.findById(req.params.id)
-        await db.Message.remove(foundMessage);
-        res.status(200).json(foundMessage);
+        let foundMessage = await db.Message.findById(req.params.message_id)
+        console.log(foundMessage);
+        if(foundMessage == null){
+            return next({status: 400, message: 'Did not find message to delete'})
+        }else {
+            await db.Message.deleteOne(foundMessage);
+            res.status(200).json(foundMessage);
+        }
     }catch(err){
         return next({
             status: 400,
