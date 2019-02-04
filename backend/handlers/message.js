@@ -3,14 +3,13 @@ const db = require('../models'),
 
 exports.createMessage = async function(req, res, next){
     try {
-        console.log(req)
-
         //save message to db
         let message = await db.Message.create({
             message: req.body.message,
             user: req.params.id
         });
 
+        console.log(req.params.id)
         //get full user doc and save with new message id added to array
         let foundUser = await db.User.findById(req.params.id);
         foundUser.messages.push(message.id);
@@ -35,10 +34,12 @@ exports.createMessage = async function(req, res, next){
 
 }
 
+// api/user/:id/message/:message_id
 exports.getMessage = async function(req, res, next){
     try {
-        let user = await db.User.findById(req.params.id);
-        let messages = await db.Message.find({user: user});
+        let messages = req.params.message_id != null ? 
+            await db.Message.find({id: req.params.message_id}) : 
+            await db.Message.find({user: req.params.id});
 
         res.status(200).json({messages: messages});
     }catch(err){
@@ -50,5 +51,14 @@ exports.getMessage = async function(req, res, next){
 }
 
 exports.deleteMessage = async function(req, res, next) {
-
+    try {
+        let foundMessage = await db.Message.findById(req.params.id)
+        await db.Message.remove(foundMessage);
+        res.status(200).json(foundMessage);
+    }catch(err){
+        return next({
+            status: 400,
+            message: err.message
+        })
+    }
 }
