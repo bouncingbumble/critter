@@ -3,20 +3,40 @@ import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import Homepage from "../components/Homepage";
 import AuthForm from "../components/AuthForm";
+import { authUser } from '../store/actions/auth';
 
 const Main = props => {
+    const { authUser } = props;
     return (
         <div className="container">
             <Switch>
-                <Route exact path="/" render={props => <Homepage {...props} /> } />
-                <Route exact path="/sigin" render={props => {
-                    return (
-                        <AuthForm buttonText="Sign In" heading="Welcome Back." {...props}/>
+                <Route 
+                    exact path="/" 
+                    render={props => <Homepage {...props} /> } 
+                />
+                <Route 
+                    exact path="/signin" 
+                    render={props => {
+                        return (
+                            <AuthForm 
+                                onAuth={ authUser } 
+                                buttonText="Sign In" 
+                                heading="Welcome Back." 
+                                {...props}
+                            />
                     )
                 }}/>
-                <Route exact path="/signup" render={props => {
-                    return (
-                        <AuthForm signup buttonText="Sign Up" heading="Join Critter Today!" {...props}/>
+                <Route 
+                    exact path="/signup" 
+                    render={props => {
+                        return (
+                            <AuthForm 
+                                onAuth={ authUser } 
+                                signup 
+                                buttonText="Sign Up" 
+                                heading="Join Critter Today!" 
+                                {...props}
+                            />
                     )
                 }}/>
             </Switch>
@@ -30,4 +50,4 @@ function mapStateToProps(state){
     };
 }
 
-export default withRouter(connect(mapStateToProps, null)(Main));
+export default withRouter(connect(mapStateToProps, { authUser })(Main));

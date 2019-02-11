@@ -1,7 +1,7 @@
 require("dotenv").config(); //process.env_________
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 6969,
+    port = 8081,
     cors = require("cors"),
     bodyParser = require('body-parser'),
     authRoutes = require('./routes/auth'),

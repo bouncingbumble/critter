@@ -11,20 +11,29 @@ export default class AuthForm extends Component {
         };
     }
 
-    handleChange = (e) => {
+    handleChange = e => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
 
+    handleSubmit = e => {
+        e.preventDefault();
+        const authType = this.props.signup ? "signup" : "signin";
+        this.props.onAuth(authType, this.state)
+        .then(() => {
+            console.log("logged in");
+        })
+    }
+
     render() {
-        const { email, username, passward, profileImageUrl } = this.state;
+        const { email, username, password, profileImageUrl } = this.state;
         const { heading, buttonText, signup } = this.props;
         return (
             <div>
                 <div className="row justify-content-md-center text-center">
                     <div className="col-md-6">
-                        <form onSubmit={this.handleSubmite}>
+                        <form onSubmit={this.handleSubmit}>
                             <h2>{ heading }</h2>
                             <label htmlFor="email">Email:</label>
                             <input type="text" id="email" name="email" onChange={this.handleChange} value={email} className="form-control"/>
@@ -32,12 +41,13 @@ export default class AuthForm extends Component {
                             <input type="password" id="password" name="password" onChange={this.handleChange} className="form-control"/>
                             { signup && (
                                 <div>
-                                    <label htmlFor="username">Email:</label>
+                                    <label htmlFor="username">Username:</label>
                                     <input type="text" id="username" name="username" onChange={this.handleChange} value={username} className="form-control"/>
-                                    <label htmlFor="img-url">Password:</label>
+                                    <label htmlFor="img-url">Pic Url:</label>
                                     <input type="text" id="img-url" name="profileImageUrl" onChange={this.handleChange} value={profileImageUrl} className="form-control"/>
                                 </div>
                             )}
+                            <button className="btn btn-primary btn-block btn-lg" type="submit">{ buttonText } </button>
                         </form>
                     </div>
                 </div>
