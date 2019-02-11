@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { configureStore } from '../store';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const store = configureStore();
 
@@ -69,7 +70,9 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div>
-            <h1>okay u kinda look like twitter</h1>
+            <div className="iamnav">
+              <Navbar/>
+            </div>
             <div className="container">
               <div className="row">
                 <div className="col">
