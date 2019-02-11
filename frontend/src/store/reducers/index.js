@@ -1,10 +1,16 @@
 import { combineReducers } from "redux";
-
-//reducers specify how the application's state changes in response to actions sent to the store.
+import currentUser from './currentUser';
+import errors from './errors';
+//reducers specify how the application's state reduces in response to actions sent to the store.
 //Actions describe 'what happened', but don't describe how the application's state changes.
-//
-//What is the minimal representation of the state?
-var initialState = {
-    currentUser: {},
-    recentTweets: []
-};
+
+//the combineReducers helper function turns an object whose values are different reducting functions into a single
+//reducing function that gets passed to createStore
+//the resulting reducer calls all the child reducers and gathers their results into a single state object
+//the state produced namespaces the states of each reducer under their keys as passed to combineReducers
+const rootReducer = combineReducers({
+    currentUser,
+    errors
+});
+
+export default rootReducer;
