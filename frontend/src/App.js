@@ -19,7 +19,15 @@ const Feed = () => {
   return (<h2>I am Feed</h2>)
 }
 const Tweet = () => {
-  return (<h2>I am Tweet</h2>)
+  return (
+  <form>
+    <div className="form-group">
+      <label for="exampleFormControlTextarea1">Put profile pic here</label>
+      <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="What's on your mind ol' sport?"></textarea>
+      <button className="btn btn-primary" type="submit">Tweet!</button>
+    </div>
+  </form>
+  )
 }
 const TweetForm = () => {
   return (<h2>I am TweetForm</h2>)
@@ -31,9 +39,9 @@ class App extends Component {
       <div>
       <h1>y u no look like twitter</h1>
       <Profile/>
+      <TweetForm/>
       <Feed/>
       <Tweet/>
-      <TweetForm/>
       </div>
     );
   }
