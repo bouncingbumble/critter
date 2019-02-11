@@ -1,14 +1,26 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.sign-in button{
+  height: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 15px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.sign-in {
+  margin-top: 10px;
 }
+
+.hero {
+  background-color: #164249;
+  height: 100vw;
+}
+
+.sign-up {
+  margin-top: 10vh;
+}
+
+.btn-primary {
+  background-color: #1f829e !important;
+  border-color: #1f829e !important;
+}
+
+button:focus {outline:0;}

@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '../store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './Navbar';
+import Main from './Main';
 
 const store = configureStore();
 
@@ -72,8 +73,9 @@ class App extends Component {
           <div>
             <div className="iamnav">
               <Navbar/>
+              <Main/>
             </div>
-            <div className="container">
+            {/* <div className="container">
               <div className="row">
                 <div className="col">
                   <Profile/>
@@ -86,7 +88,7 @@ class App extends Component {
                 
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </Router>
       </Provider>
