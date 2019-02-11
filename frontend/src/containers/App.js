@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { configureStore } from '../store';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+const store = configureStore();
 
 const Profile = () => {
   return (
@@ -61,23 +66,28 @@ const TweetForm = () => {
 class App extends Component {
   render() {
     return (
-      <div>
-      <h1>okay u kinda look like twitter</h1>
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <Profile/>
+      <Provider store={store}>
+        <Router>
+          <div>
+            <h1>okay u kinda look like twitter</h1>
+            <div className="container">
+              <div className="row">
+                <div className="col">
+                  <Profile/>
+                </div>
+                <div className="col-6">
+                  <TweetForm/>
+                  <Feed/>
+                </div>
+                <div className="col">
+                
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="col-6">
-            <TweetForm/>
-            <Feed/>
-          </div>
-          <div className="col">
-          
-          </div>
-        </div>
-      </div>
-      </div>
+        </Router>
+      </Provider>
+
     );
   }
 }

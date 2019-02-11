@@ -6,17 +6,16 @@
     //register and unregister listeners vis subscribe(listener)
 import rootReducer from './reducers';
 import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import {
-    ADD_ERROR,
-    REMOVE_ERROR,
-    GET_CURRENT_USER
-} from './actionTypes';
+import thunk from 'redux-thunk';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export function configureStore(){
     const store  = createStore(
-        rootReducer, 
-        compose(applyMiddleware(thunk))
+        rootReducer,
+        composeEnhancers(
+            applyMiddleware(thunk)
+        )
     );
 
     return store;
