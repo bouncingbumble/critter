@@ -16,11 +16,14 @@ exports.signin = async function(req, res, next){
                 }, 
                 process.env.SECRET_KEY
             );
-            res.send({
-                "message": `Welcome ${foundUser.email}`,
-                "JWT" : token
-            })
+            return res.status(200).json({
+                id,
+                username,
+                profileImageUrl,
+                token
+            });
         }else {
+            console.log('error')
             let err = new Error("Wrong password");
             err.status = 400;
             next(err)
@@ -49,16 +52,12 @@ exports.signup = async function(req, res, next){
             process.env.SECRET_KEY
         );
 
-        res.send({
-            "message": `Thanks for signing up ${username}`,
-            "JWT" : token
+        return res.status(200).json({
+            id,
+            username,
+            profileImageUrl,
+            token
         });
-        // return res.status(200).json({
-        //     id,
-        //     username,
-        //     profileImageUrl,
-        //     token
-        // });
     }catch(err){
         if(err.code === 11000){
             err.message = "Sorry, that username and/or email is taken";

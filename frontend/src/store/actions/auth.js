@@ -1,5 +1,19 @@
 import { apiCall } from '../../services/api';
 import { SET_CURRENT_USER } from '../actionTypes';
+import { addError, removeError } from './errors';
+
+//application maps state to props and then uses actions to dispatch data to the reducers that update the state
+
+                //      app   > pass down actions from containers to components > components send data to actions
+                //       ^                                                                      v
+                //map state to props                                              actions store.dispatch
+                //       ^                                                                      v  
+                //     store                       < < <                        store calls appropriate reducers to update state
+
+
+
+//actions are payloads of information that send data from the application to the store
+//actions are the only source of information for the store
 
 export function setCurrentUser(user) {
     return {
@@ -15,9 +29,11 @@ export function authUser(type, userData) {
                 .then(({ token, ...user }) => {
                     localStorage.setItem("jwtToken", token);
                     dispatch(setCurrentUser(user));
+                    dispatch(removeError());
                     resolve();
                 })
                 .catch(err => {
+                    dispatch(addError(err.message));
                     reject();
                 })
         })
