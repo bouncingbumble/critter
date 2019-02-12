@@ -17,10 +17,8 @@ exports.signin = async function(req, res, next){
                 process.env.SECRET_KEY
             );
             return res.status(200).json({
-                id,
-                username,
-                profileImageUrl,
-                token
+                username: foundUser.username,
+                messages: foundUser.messages
             });
         }else {
             console.log('error')

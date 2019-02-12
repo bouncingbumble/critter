@@ -22,6 +22,13 @@ export function setCurrentUser(user) {
     };
 }
 
+export function signout() {
+    return dispatch => {
+        localStorage.clear();
+        dispatch(setCurrentUser({}));
+    }
+}
+
 export function authUser(type, userData) {
     return dispatch => {
         return new Promise((resolve, reject) => {
