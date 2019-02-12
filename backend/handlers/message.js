@@ -1,5 +1,4 @@
-const db = require('../models'),
-    jwt = require('jsonwebtoken');
+const db = require('../models')
 
 exports.createMessage = async function(req, res, next){
     try {
@@ -22,7 +21,7 @@ exports.createMessage = async function(req, res, next){
                 username: true,
                 profileImageUrl: true
             });
-
+            console.log(foundMessage)
         res.status(201).json(foundMessage);
 
     }catch(err){

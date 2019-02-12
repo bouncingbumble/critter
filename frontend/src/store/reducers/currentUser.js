@@ -12,6 +12,7 @@ const DEFAULT_STATE = {
 export default (state = DEFAULT_STATE, action) => {
     switch(action.type) {
         case SET_CURRENT_USER://if it is the set user ACTION then REDUCE the state in this way
+            console.log(action.user);
             return {
                 //true or false are there keys or no keys in this object
                 isAuthenticated: !!Object.keys(action.user).length > 0,

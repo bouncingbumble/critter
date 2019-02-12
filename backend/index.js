@@ -28,7 +28,7 @@ app.get('/api/messages/all', async (req, res, next) => {
             .sort({createdAt: 'desc'})
             .populate("user", {
                 username: true,
-                profileImage: true
+                profileImageUrl: true
             });
         res.status(200).json(messages);
     }catch(err){

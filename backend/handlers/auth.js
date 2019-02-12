@@ -10,15 +10,20 @@ exports.signin = async function(req, res, next){
         let found = await foundUser.comparePassword(req.body.password, errorHandler);
    
         if(found){
+            let { username, messages, profileImageUrl } = foundUser;
             let token = jwt.sign({
                     id: foundUser._id,
-                    username: foundUser.username
+                    username,
+                    messages,
+                    profileImageUrl
                 }, 
                 process.env.SECRET_KEY
             );
+
             return res.status(200).json({
-                username: foundUser.username,
-                messages: foundUser.messages,
+                username,
+                messages,
+                profileImageUrl,
                 token
             });
         }else {
@@ -45,8 +50,7 @@ exports.signup = async function(req, res, next){
         //create a token
         let token = jwt.sign({
             id,
-            username,
-            profileImageUrl
+            username
             }, 
             process.env.SECRET_KEY
         );

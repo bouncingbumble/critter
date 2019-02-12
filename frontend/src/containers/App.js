@@ -18,21 +18,6 @@ if(localStorage.jwtToken){
   }
 }
 
-const Profile = () => {
-  return (
-    <div className="card" style={{"width": "18rem"}}>
-      <img className="card-img-top" src="kris.png" alt="profile pic"></img>
-      <div className="card-body">
-        <h5 className="card-title">Kristopherson Fox</h5>
-        <p className="card-text">I am the greatest to ever play the game known as wackbat in the northwest regional section of Grassy Knoll.</p>
-        <a href="#" >Tweets: 3</a><br></br>
-        <a href="#" > Followers: 2</a><br></br>
-        <a href="#" > Following: 10</a>
-      </div>
-  </div>
-  )
-}
-
 const Feed = () => {
   return (
     <div>

@@ -1,13 +1,18 @@
 import React from "react";
 
-const UserProfile = ({profileImgUrl, username}) => (
-    <aside className="col-sm-2">
-        <div className="panel panel-default">
-            <div className="panel-body">
-                <img src={profileImgUrl} alt={username} className="img-thumbnail" width="200" height="200" />
+const UserProfile = ({profileImageUrl, username}) => (
+    <div className="col-sm-2">
+        <div className="card" style={{"width": "18rem"}}>
+            <img src={profileImageUrl} alt={username} className="img-thumbnail" width="200" height="200" />
+            <div className="card-body">
+                <h5 className="card-title">{username}</h5>
+                <p className="card-text">This is where the users bio will go, coming soon. . .</p>
+                <a href="#" >Tweets: tbd</a><br></br>
+                <a href="#" > Followers: tbd</a><br></br>
+                <a href="#" > Following: tbd</a>
             </div>
         </div>
-    </aside>
+    </div>
 )
 
 export default UserProfile;
