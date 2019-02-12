@@ -2,7 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 
-const MessageItem = ({ date, profileImageUrl, text, username }) => {
+const MessageItem = ({ date, profileImageUrl, text, username, removeMessage, isCorrectUser }) => {
     return (
     
         <div className="">
@@ -14,6 +14,10 @@ const MessageItem = ({ date, profileImageUrl, text, username }) => {
                 </Moment>
             </span>
             <p>{text}</p>
+            {isCorrectUser && (
+                <a onClick={removeMessage} className="btn btn-danger">Delete</a>
+            )}
+
         </div>
     )
 }
