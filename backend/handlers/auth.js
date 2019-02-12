@@ -18,7 +18,8 @@ exports.signin = async function(req, res, next){
             );
             return res.status(200).json({
                 username: foundUser.username,
-                messages: foundUser.messages
+                messages: foundUser.messages,
+                token
             });
         }else {
             console.log('error')
