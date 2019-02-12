@@ -17,4 +17,13 @@ export const fetchMessages = () => {
             dispatch(addError(err.message))
         });
     };
-}
+};
+
+export const postMessage = text => (dispatch, getState) => {
+    let { currentUser } = getState();
+    const id = currentUser.user.id;
+
+    return apiCall("post", `/api/user/${id}/message`, { message: text })
+        .then(res => {})
+        .catch(err => dispatch(addError(err.message)));
+};
