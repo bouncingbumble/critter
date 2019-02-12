@@ -22,19 +22,7 @@ class MessageList extends Component {
             />
         })
 
-        return (
-            <div>
-                <div className='container'>
-                    <div className='row'>
-                        <div className="card">
-                            { messageList }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-        
-
+        return messageList;
     }
 }
 

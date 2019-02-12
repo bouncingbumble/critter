@@ -19,12 +19,12 @@ class MessageForm extends Component {
 
     render(){
         return (
-            <form onSubmit={this.handleNewMessage} action="" className="">
+            <form onSubmit={this.handleNewMessage} action="" className="form-group">
                 {this.props.errors.message && (
                     <div className="alert alert-danger">{this.props.errors.message}</div>
                 )}
-                <input type="text" className="form-control" value={this.state.message} onChange={e => this.setState({ message: e.target.value})}/>
-                <button type="submit" className="btn btn-success pull-right">Tweet!</button>
+                <input type="text" className="form-control" placeholder="Mark are you praying?" value={this.state.message} onChange={e => this.setState({ message: e.target.value})}/>
+                <button className="btn btn-primary" type="submit">Tweet!</button>
             </form>
         )
     }
