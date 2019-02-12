@@ -5,20 +5,19 @@ import MessageForm from '../containers/MessageForm';
 
 const MessageTimeLine = props => {
 return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col">
-                    <UserProfile profileImageUrl={props.profileImageUrl} username={props.username} />   
-                </div>
-                <div className="col-6">
-                    <MessageForm />
-                    <MessageList />
-                </div>
-                <div className="col">
-                
-                </div>
-            </div>
+    <div className="row">
+        <div className="col-1">
         </div>
+        <div className="col-2">
+            <UserProfile profileImageUrl={props.profileImageUrl} username={props.username} />   
+        </div>
+        <div className="col-1">
+        </div>
+        <div className="col-4">
+            <MessageForm />
+            <MessageList />
+        </div>
+    </div>
     )
 }
 

@@ -27,4 +27,21 @@ button:focus {outline:0;}
 
 img {
   border-radius: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  /* margin-left: 15px; */
+  margin-right: 15px;
 }
+
+.profile-image-large {
+  border-radius: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.message-item {
+  margin-top: 20px;
+}
+

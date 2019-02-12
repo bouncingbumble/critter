@@ -38,25 +38,30 @@ export default class AuthForm extends Component {
         })
 
         return (
-            <div>
-                <div className="row justify-content-md-center text-center">
-                    <div className="col-md-6">
+            <div class="container-fluid">
+                <div className="row">
+                    <div class="col-6">
+            
+                    </div>
+                    <div class="col-4">
+                        <h2>{ heading }</h2>
                         <form onSubmit={this.handleSubmit}>
-                            <h2>{ heading }</h2>
-                            {errors.message && (<div className="alert alert-danger">{ errors.message } </div>)}
-                            <label htmlFor="email">Email:</label>
-                            <input type="text" id="email" name="email" onChange={this.handleChange} value={email} className="form-control"/>
-                            <label htmlFor="password">Password:</label>
-                            <input type="password" id="password" name="password" onChange={this.handleChange} className="form-control"/>
-                            { signup && (
-                                <div>
-                                    <label htmlFor="username">Username:</label>
-                                    <input type="text" id="username" name="username" onChange={this.handleChange} value={username} className="form-control"/>
-                                    <label htmlFor="img-url">Pic Url:</label>
-                                    <input type="text" id="img-url" name="profileImageUrl" onChange={this.handleChange} value={profileImageUrl} className="form-control"/>
-                                </div>
-                            )}
-                            <button className="btn btn-primary btn-block btn-lg" type="submit">{ buttonText } </button>
+                            <div class="form-row">
+                                {errors.message && (<div className="alert alert-danger">{ errors.message } </div>)}
+                                <label htmlFor="email">Email:</label>
+                                <input type="text" id="email" name="email" onChange={this.handleChange} value={email} className="form-control"/>
+                                <label htmlFor="password">Password:</label>
+                                <input type="password" id="password" name="password" onChange={this.handleChange} className="form-control"/>
+                                { signup && (
+                                    <div className="col-12">
+                                        <label htmlFor="username">Username:</label>
+                                        <input type="text" id="username" name="username" onChange={this.handleChange} value={username} className="form-control"/>
+                                        <label htmlFor="img-url">Pic Url:</label>
+                                        <input type="text" id="img-url" name="profileImageUrl" onChange={this.handleChange} value={profileImageUrl} className="form-control"/>
+                                    </div>
+                                )}
+                                <button className="btn btn-primary btn-block btn-lg" type="submit">{ buttonText } </button>
+                            </div>
                         </form>
                     </div>
                 </div>

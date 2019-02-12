@@ -11,7 +11,7 @@ import MessageForm from '../containers/MessageForm';
 const Main = props => {
     const { authUser, errors, removeError, currentUser } = props;
     return (
-        <div className="container">
+        <div className="container-fluid">
             <Switch>
                 <Route 
                     exact path="/" 
@@ -38,7 +38,7 @@ const Main = props => {
                                 onAuth={ authUser } 
                                 signup 
                                 buttonText="Sign Up" 
-                                heading="Join Critter Today!" 
+                                heading="Join Twitter Today!" 
                                 {...props}
                             />
                 }/>

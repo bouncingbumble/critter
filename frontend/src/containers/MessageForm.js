@@ -23,8 +23,14 @@ class MessageForm extends Component {
                 {this.props.errors.message && (
                     <div className="alert alert-danger">{this.props.errors.message}</div>
                 )}
-                <input type="text" className="form-control" placeholder="Mark are you praying?" value={this.state.message} onChange={e => this.setState({ message: e.target.value})}/>
-                <button className="btn btn-primary" type="submit">Tweet!</button>
+                <div className="row">
+                    <div className="col-9">
+                        <input type="text" className="form-control" placeholder="Mark are you praying?" value={this.state.message} onChange={e => this.setState({ message: e.target.value})}/>
+                    </div>
+                    <div className="col-2">
+                        <button className="btn btn-primary" type="submit">Tweet!</button>
+                    </div>
+                </div>
             </form>
         )
     }
